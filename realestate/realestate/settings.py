@@ -13,6 +13,7 @@
 
 import os
 import sys
+import logging
 import django
 
 
@@ -99,3 +100,5 @@ ITEM_PIPELINES = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+LOG_LEVEL = logging.INFO
