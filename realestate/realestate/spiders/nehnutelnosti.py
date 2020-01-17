@@ -28,8 +28,7 @@ class NehnutelnostiSpider(scrapy.Spider):
             price = price.replace(',', '.')
 
             size = inzerat.css('.location-text span::text').get()
-            size = size.strip()[:-2]
-            size = size.strip()
+            size = size.strip()[:-2].strip() if size else 0
 
             date = inzerat.css('span.advertisement-add-date::text').get()
             date_time_obj = datetime.datetime.strptime(date.replace(' ', '').replace('\n', ''), '%d.%m.%Y')
