@@ -1,0 +1,27 @@
+.header {
+    text-align: center;
+    margin-top: 5px;
+}
+
+.content {
+    margin: 5% 10%;
+}
+
+.post {
+   display: flex;
+    margin-bottom: 20px;
+ }
+
+.post .details {
+    flex: 1;
+    padding: 20px;
+}
+
+.post .details h3 {
+    margin-top: 0;
+}
+
+.post .details .price {
+    color: #cc1632;
+    font-size: 22px;
+}
