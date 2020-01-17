@@ -24,11 +24,12 @@ class DatabasePipeline(object):
     def process_item(self, item, spider):
         scrapy_item = RealityPost()
         scrapy_item.title = item['title']
+        scrapy_item.source = spider.name
         scrapy_item.price = item['price']
         scrapy_item.size = item['size']
         scrapy_item.image_url = item['image_url']
         scrapy_item.link_url = item['link_url']
-        scrapy_item.date = item['date']
+        scrapy_item.date_updated = item['date_updated']
 
         existing_post = RealityPost.objects.filter(link_url=item['link_url'])
         if len(existing_post) == 0:

@@ -18,8 +18,9 @@
                         <h3>{{object.title|safe}}</h3>
                     </a>
                     <div>{{object.description|safe}}</div>
-                    <div>Zmenene: {{ object.date|date:"d.m.Y" }}</div>
+                    <div>Zmenene: {{ object.date_updated|date:"d.m.Y" }}</div>
                     <div>Veľkosť: {{ object.size }} m<sup>2</sup></div>
+                    <div>Portal: {{ object.source }}</div>
                     <div class="price">Cena: {{ object.price|floatformat:"0" }} €</div>
                 </div>
             </div>

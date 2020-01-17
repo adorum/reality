@@ -12,6 +12,10 @@
     margin-bottom: 20px;
  }
 
+.post img {
+    width: 200px;
+}
+
 .post .details {
     flex: 1;
     padding: 20px;

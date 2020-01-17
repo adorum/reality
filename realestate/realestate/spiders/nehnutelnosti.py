@@ -8,7 +8,7 @@ from ..items import RealityPostItem
 class NehnutelnostiSpider(scrapy.Spider):
     name = 'nehnutelnosti'
     allowed_domains = ['nehnutelnosti.sk']
-    start_urls = ['https://www.nehnutelnosti.sk/bratislava-ii-ruzinov/3-izbove-byty/predaj/?p%5Bparam1%5D%5Bfrom%5D=&p%5Bparam1%5D%5Bto%5D=180000&p%5Bparam11%5D%5Bfrom%5D=60&p%5Bparam11%5D%5Bto%5D=']
+    start_urls = ['https://www.nehnutelnosti.sk/domy/predaj/?p%5Blocation%5D=t14.t219.t9.t8.t91&p%5Bparam1%5D%5Bfrom%5D=&p%5Bparam1%5D%5Bto%5D=320000']
 
     def parse(self, response):
         for inzerat in response.css('div#inzeraty .advertisement-box-image-main:not(.project-column-1)'):
@@ -41,7 +41,7 @@ class NehnutelnostiSpider(scrapy.Spider):
             item['description'] = description
             item['price'] = price
             item['size'] = size
-            item['date'] = date
+            item['date_updated'] = date
 
             yield item
 

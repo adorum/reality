@@ -4,10 +4,11 @@ import re
 import datetime
 from ..items import RealityPostItem
 
+
 class ToprealitySpider(scrapy.Spider):
     name = 'topreality'
     allowed_domains = ['topreality.sk']
-    start_urls = ['https://www.topreality.sk/vyhladavanie-nehnutelnosti-1.html?type%5B0%5D=104&form=1&obec=5&cena_do=250000&n_search=search&gpsPolygon=&searchType=string']
+    start_urls = ['https://www.topreality.sk/vyhladavanie-nehnutelnosti.html?cat=&form=1&type%5B%5D=204&searchType=string&obec=5%2C17%2C9%2C15%2C67&distance=&q=&cena_od=&cena_do=320000&vymera_od=&vymera_do=&n_search=search&page=estate&gpsPolygon=']
 
     def parse(self, response):
         for inzerat in response.css('div.row.estate'):
@@ -34,7 +35,7 @@ class ToprealitySpider(scrapy.Spider):
             item['image_url'] = 'https://topreality.sk{0}'.format(image) if image else None
             item['price'] = float(price)
             item['size'] = int(size)
-            item['date'] = date_time_obj.isoformat()
+            item['date_updated'] = date_time_obj.isoformat()
 
             yield item
 
