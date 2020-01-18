@@ -23,7 +23,7 @@ class DatabasePipeline(object):
 
     def process_item(self, item, spider):
         try:
-            existing_post = RealityPost.objects.filter(title=item['title'], price=item['price'])
+            existing_post = RealityPost.objects.get(title=item['title'], price=item['price'])
         except RealityPost.DoesNotExist:
             existing_post = None
 
