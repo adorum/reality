@@ -28,7 +28,7 @@ class DatabasePipeline(object):
             existing_post = None
 
         if existing_post:
-            existing_post['date_updated'] = item['date_updated']
+            existing_post.date_updated = item['date_updated']
             existing_post.save()
         else:
             scrapy_item = RealityPost()
