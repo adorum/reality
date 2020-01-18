@@ -22,17 +22,23 @@ class DatabasePipeline(object):
         )
 
     def process_item(self, item, spider):
-        scrapy_item = RealityPost()
-        scrapy_item.title = item['title']
-        scrapy_item.source = spider.name
-        scrapy_item.price = item['price']
-        scrapy_item.size = item['size']
-        scrapy_item.image_url = item['image_url']
-        scrapy_item.link_url = item['link_url']
-        scrapy_item.date_updated = item['date_updated']
+        try:
+            existing_post = RealityPost.objects.filter(title=item['title'], price=item['price'])
+        except RealityPost.DoesNotExist:
+            existing_post = None
 
-        existing_post = RealityPost.objects.filter(link_url=item['link_url'])
-        if len(existing_post) == 0:
+        if existing_post:
+            existing_post['date_updated'] = item['date_updated']
+            existing_post.save()
+        else:
+            scrapy_item = RealityPost()
+            scrapy_item.title = item['title']
+            scrapy_item.source = spider.name
+            scrapy_item.price = item['price']
+            scrapy_item.size = item['size']
+            scrapy_item.image_url = item['image_url']
+            scrapy_item.link_url = item['link_url']
+            scrapy_item.date_updated = item['date_updated']
             scrapy_item.save()
 
         return item
