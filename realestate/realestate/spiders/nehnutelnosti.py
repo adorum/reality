@@ -35,7 +35,7 @@ class NehnutelnostiSpider(scrapy.Spider):
                 size = 0
 
             date = inzerat.css('span.advertisement-add-date::text').get()
-            date_obj = datetime.datetime.strptime(date.replace(' ', '').replace('\n', ''), '%d.%m.%Y').date()
+            date_obj = datetime.datetime.strptime(date.replace(' ', '').replace('\n', ''), '%d.%m.%Y')
             date = date_obj.isoformat()
 
             item['link_url'] = url

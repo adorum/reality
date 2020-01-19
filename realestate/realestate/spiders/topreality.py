@@ -28,7 +28,7 @@ class ToprealitySpider(scrapy.Spider):
             size = size.strip()
 
             date = inzerat.css('li.date::text').get()
-            date_obj = datetime.datetime.strptime(date, '%d.%m.%Y').date()
+            date_obj = datetime.datetime.strptime(date, '%d.%m.%Y')
 
             item['title'] = title
             item['link_url'] = url

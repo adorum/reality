@@ -8,6 +8,6 @@ class RealityPost(models.Model):
     link_url = models.URLField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     size = models.IntegerField()
-    date_updated = models.DateField()
+    date_updated = models.DateTimeField()
     date_created = models.DateTimeField(auto_now_add=True, editable=False)
 
