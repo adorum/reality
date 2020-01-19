@@ -27,7 +27,7 @@ class DatabasePipeline(object):
         except RealityPost.DoesNotExist:
             existing_post = None
 
-        if existing_post:
+        if existing_post and existing_post.date_updated != item['date_updated']:
             existing_post.date_updated = item['date_updated']
             existing_post.save()
         else:
