@@ -28,14 +28,14 @@ class ToprealitySpider(scrapy.Spider):
             size = size.strip()
 
             date = inzerat.css('li.date::text').get()
-            date_time_obj = datetime.datetime.strptime(date, '%d.%m.%Y')
+            date_obj = datetime.datetime.strptime(date, '%d.%m.%Y').date()
 
             item['title'] = title
             item['link_url'] = url
             item['image_url'] = 'https://topreality.sk{0}'.format(image) if image else None
             item['price'] = float(price)
             item['size'] = int(size)
-            item['date_updated'] = date_time_obj.isoformat()
+            item['date_updated'] = date_obj.isoformat()
 
             yield item
 
