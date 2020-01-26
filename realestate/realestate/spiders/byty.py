@@ -6,7 +6,7 @@ from decimal import Decimal
 from ..items import RealityPostItem
 
 
-class NehnutelnostiSpider(scrapy.Spider):
+class BytySpider(scrapy.Spider):
     name = 'byty'
     allowed_domains = ['byty.sk']
     start_urls = ['https://www.byty.sk/3-izbove-byty/predaj/?p[location]=t10.t14&p[param1][to]=185000&p[param11][from]=65']

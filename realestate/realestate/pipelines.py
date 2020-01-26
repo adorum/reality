@@ -8,6 +8,7 @@
 from pydispatch import dispatcher
 from scrapy import signals
 from app.models import RealityPost
+from scrapy.exceptions import DropItem
 
 
 class DatabasePipeline(object):
@@ -22,6 +23,10 @@ class DatabasePipeline(object):
         )
 
     def process_item(self, item, spider):
+        if any(word in item['title'].lower() for word in ['prenájom', 'prenajom', 'kúpim', 'kupim']):
+       # if any(item['title'].lower() in s for s in ['prenájom', 'prenajom', 'kúpim', 'kupim']):
+            raise DropItem('Neriesim kupim a prenajom')
+
         try:
             existing_post = RealityPost.objects.get(title=item['title'])
         except RealityPost.DoesNotExist:
