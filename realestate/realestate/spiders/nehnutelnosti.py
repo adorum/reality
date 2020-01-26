@@ -2,13 +2,14 @@
 import scrapy
 import datetime
 import re
+from decimal import Decimal
 from ..items import RealityPostItem
 
 
 class NehnutelnostiSpider(scrapy.Spider):
     name = 'nehnutelnosti'
     allowed_domains = ['nehnutelnosti.sk']
-    start_urls = ['https://www.nehnutelnosti.sk/domy/predaj/?p%5Blocation%5D=t14.t219.t9.t8.t91&p%5Bparam1%5D%5Bfrom%5D=&p%5Bparam1%5D%5Bto%5D=320000']
+    start_urls = ['https://www.nehnutelnosti.sk/3-izbove-byty/predaj/?p%5Border%5D=15&p%5Blocation%5D=t14.t10&p%5Bparam1%5D%5Bfrom%5D=&p%5Bparam1%5D%5Bto%5D=190000&p%5Bparam11%5D%5Bfrom%5D=68&p%5Bparam11%5D%5Bto%5D=']
 
     def parse(self, response):
         for inzerat in response.css('div#inzeraty .advertisement-box-image-main:not(.project-column-1)'):
@@ -42,7 +43,7 @@ class NehnutelnostiSpider(scrapy.Spider):
             item['image_url'] = image
             item['title'] = title
             item['description'] = description
-            item['price'] = price
+            item['price'] = Decimal(price)
             item['size'] = size
             item['date_updated'] = date
 

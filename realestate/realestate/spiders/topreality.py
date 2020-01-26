@@ -2,13 +2,14 @@
 import scrapy
 import re
 import datetime
+from decimal import Decimal
 from ..items import RealityPostItem
 
 
 class ToprealitySpider(scrapy.Spider):
     name = 'topreality'
     allowed_domains = ['topreality.sk']
-    start_urls = ['https://www.topreality.sk/vyhladavanie-nehnutelnosti.html?cat=&form=1&type%5B%5D=204&searchType=string&obec=5%2C17%2C9%2C15%2C67&distance=&q=&cena_od=&cena_do=320000&vymera_od=&vymera_do=&n_search=search&page=estate&gpsPolygon=']
+    start_urls = ['https://www.topreality.sk/vyhladavanie-nehnutelnosti.html?cat=&form=1&type%5B%5D=104&searchType=string&obec=5%2C8&distance=&q=&cena_od=&cena_do=190000&vymera_od=68&vymera_do=&n_search=search&page=estate&gpsPolygon=']
 
     def parse(self, response):
         for inzerat in response.css('div.row.estate'):
@@ -33,7 +34,7 @@ class ToprealitySpider(scrapy.Spider):
             item['title'] = title
             item['link_url'] = url
             item['image_url'] = 'https://topreality.sk{0}'.format(image) if image else None
-            item['price'] = float(price)
+            item['price'] = Decimal(price)
             item['size'] = int(size)
             item['date_updated'] = date_obj.isoformat()
 
