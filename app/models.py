@@ -1,6 +1,7 @@
 from django.db import models
 
-class RealityPost(models.Model):
+
+class Post(models.Model):
     title = models.TextField()
     description = models.TextField()
     source = models.TextField()

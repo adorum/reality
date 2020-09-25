@@ -9,7 +9,9 @@ from ..items import RealityPostItem
 class NehnutelnostiSpider(scrapy.Spider):
     name = 'nehnutelnosti'
     allowed_domains = ['nehnutelnosti.sk']
-    start_urls = ['https://www.nehnutelnosti.sk/3-izbove-byty/predaj/?p%5Border%5D=15&p%5Blocation%5D=t14.t10&p%5Bparam1%5D%5Bfrom%5D=&p%5Bparam1%5D%5Bto%5D=190000&p%5Bparam11%5D%5Bfrom%5D=68&p%5Bparam11%5D%5Bto%5D=']
+    start_urls = [
+        'https://www.nehnutelnosti.sk/pozemky-rodinne-domy/predaj/?p%5Blocation%5D=t14.t13.t10.t219.t9.t7.t8.t215.t217.t218&p%5Bparam1%5D%5Bfrom%5D=&p%5Bparam1%5D%5Bto%5D=200000&p%5Bparam11%5D%5Bfrom%5D=200&p%5Bparam11%5D%5Bto%5D=',
+        'https://www.nehnutelnosti.sk/domy/predaj/?p%5Blocation%5D=t14.t13.t10.t219.t9.t7.t8.t215.t217.t218&p%5Bparam1%5D%5Bfrom%5D=&p%5Bparam1%5D%5Bto%5D=330000&p%5Bparam11%5D%5Bfrom%5D=200&p%5Bparam11%5D%5Bto%5D=']
 
     def parse(self, response):
         for inzerat in response.css('div#inzeraty .advertisement-box-image-main:not(.project-column-1)'):
@@ -49,7 +51,8 @@ class NehnutelnostiSpider(scrapy.Spider):
 
             yield item
 
-        next_page = response.css('div.paginatorContainerDown li.page-item.page-item-next:not(.d-none) a::attr(href)').get()
+        next_page = response.css(
+            'div.paginatorContainerDown li.page-item.page-item-next:not(.d-none) a::attr(href)').get()
         if next_page is not None:
             next_page = response.urljoin(next_page)
             yield scrapy.Request(next_page, callback=self.parse)

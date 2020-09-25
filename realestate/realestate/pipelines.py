@@ -7,7 +7,7 @@
 
 from pydispatch import dispatcher
 from scrapy import signals
-from app.models import RealityPost
+from app.models import Post
 from scrapy.exceptions import DropItem
 
 
@@ -28,8 +28,8 @@ class DatabasePipeline(object):
             raise DropItem('Neriesim kupim a prenajom')
 
         try:
-            existing_post = RealityPost.objects.get(title=item['title'])
-        except RealityPost.DoesNotExist:
+            existing_post = Post.objects.get(title=item['title'])
+        except Post.DoesNotExist:
             existing_post = None
 
         if existing_post:
@@ -38,7 +38,7 @@ class DatabasePipeline(object):
                 existing_post.date_updated = item['date_updated']
                 existing_post.save()
         else:
-            scrapy_item = RealityPost()
+            scrapy_item = Post()
             scrapy_item.title = item['title']
             scrapy_item.source = spider.name
             scrapy_item.price = item['price']

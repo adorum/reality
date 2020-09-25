@@ -5,13 +5,12 @@
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/items.html
 
-import scrapy
 from scrapy_djangoitem import DjangoItem
-from app.models import RealityPost
+from app.models import Post
 
 
 class RealityPostItem(DjangoItem):
     """
     Define a item based on django model BlogPost
     """
-    django_model = RealityPost
+    django_model = Post

@@ -1,6 +1,8 @@
-from django.urls import path, include
-from app.views import RealityPostList
+from django.urls import path
+from app.views import post_list, clear_posts, scrape_posts
 
 urlpatterns = [
-    path('', RealityPostList.as_view(), name='post-list')
+    path('posts/', post_list, name='posts'),
+    path('clear/', clear_posts, name='posts'),
+    path('scrape/', scrape_posts, name='posts')
 ]
