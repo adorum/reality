@@ -26,6 +26,7 @@ services:
     environment:
       - WORKER_REDIS_URL=redis://redis:6379/0
       - SCRAPY_SETTINGS_MODULE=reality_scrapy.reality_scrapy.settings
+      - DATABASE_SERVER_URL=postgres
 
 volumes:
   realitydata:
