@@ -15,6 +15,7 @@ class ToprealitySpider(scrapy.Spider):
 
     def parse(self, response):
         for inzerat in response.css('div.row.estate'):
+            print("Parse inzerat")
             item = RealityPostItem()
 
             title = inzerat.css('h2 a::text').get().strip()

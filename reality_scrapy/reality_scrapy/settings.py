@@ -13,22 +13,15 @@
 
 import os
 import sys
-import logging
 import django
 
+BOT_NAME = 'reality_scrapy'
 
-sys.path.append(os.path.dirname(os.path.abspath('.')))
-os.environ['DJANGO_SETTINGS_MODULE'] = 'reality.settings'
-
-django.setup()
-
-BOT_NAME = 'realestate'
-
-SPIDER_MODULES = ['realestate.spiders']
-NEWSPIDER_MODULE = 'realestate.spiders'
+SPIDER_MODULES = ['reality_scrapy.reality_scrapy.spiders']
+NEWSPIDER_MODULE = 'reality_scrapy.reality_scrapy.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'realestate (+http://www.yourdomain.com)'
+#USER_AGENT = 'reality_scrapy (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY=False
@@ -59,13 +52,13 @@ ROBOTSTXT_OBEY=False
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'realestate.middlewares.RealestateSpiderMiddleware': 543,
+#    'reality_scrapy.middlewares.RealityScrapySpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'realestate.middlewares.RealestateDownloaderMiddleware': 543,
+#    'reality_scrapy.middlewares.RealityScrapyDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -77,7 +70,7 @@ ROBOTSTXT_OBEY=False
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'realestate.pipelines.DatabasePipeline': 300,
+   'reality_scrapy.reality_scrapy.pipelines.DatabasePipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -101,4 +94,9 @@ ITEM_PIPELINES = {
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-LOG_LEVEL = logging.INFO
+#LOG_LEVEL = logging.INFO
+
+sys.path.append(os.path.dirname(os.path.abspath('.')))
+
+os.environ['DJANGO_SETTINGS_MODULE'] = 'reality.settings'
+django.setup()
